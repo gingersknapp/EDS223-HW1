@@ -3,6 +3,7 @@ library(tidyverse)
 library(sf)
 library(here)
 library(tmap)
+
 ```
 
 ```{r}
@@ -14,56 +15,28 @@ ejscreen <- sf::st_read('../../../../courses/EDS223/ejscreen/EJSCREEN_2023_BG_St
 california <- ejscreen %>%
   dplyr::filter(ST_ABBREV == "CA") 
 
-# filter to a county you are interested in
-santa_cruz_monterey <- ejscreen %>%
-  dplyr::filter(CNTY_NAME %in% c("Santa Cruz County", "Monterey County"))
-#monterey <- ejscreen %>%
-  dplyr::filter(CNTY_NAME %in% c("Monterey County"))
+san_fran <- ejscreen %>%
+  dplyr::filter(CNTY_NAME %in% c("San Francisco County")) |> filter(
+    LOWINCOME > 0
+  )
 
-# find the average values for all variables within counties
-santa_cruz_monterey_summ <- aggregate(california, by = list(california$CNTY_NAME), FUN = mean)
+
 ```
+
+
+
+
+
+
+
+
+WE FOUND SOMETHING!
 
 ```{r}
-#Check out the filtered dataframe size
-nrow(santa_cruz_monterey)
-# 458 seems like good number
+tm_shape(san_fran) +
+  tm_polygons(fill = 'P_PNPL')
 
-# Are measurements repeated?
-head(santa_cruz_monterey)
-# Nope
-```
-```{r}
-# Let's make some maps
-#Let's look at cancer (air toxins)
-
-tm_shape(santa_cruz_monterey) +
-    tm_polygons() +
-    tm_raster('CANCER')
-
+tm_shape(san_fran) +
+  tm_polygons(fill = 'PEOPCOLORPCT')
 ```
 
-
-Let's try Nevada
-```{r}
-# filter to a state you are interested in
-nevada <- ejscreen %>%
-  dplyr::filter(ST_ABBREV == "NV") 
-
-# filter to a county you are interested in
-santa_cruz <- ejscreen %>%
-  dplyr::filter(CNTY_NAME %in% c("Santa Cruz County"))
-  
-monterey <- ejscreen %>%
-  dplyr::filter(CNTY_NAME %in% c("Monterey County"))
-#monterey <- ejscreen %>%
-  dplyr::filter(CNTY_NAME %in% c("Monterey County"))
-
-# find the average values for all variables within counties
-nevada_summ <- aggregate(nevada, by = list(nevada$CNTY_NAME), FUN = mean)
-```
-```{r}
-tm_shape(monterey) +
-    tm_polygons() +
-    
-```
