@@ -41,7 +41,7 @@ tm_shape(san_fran) +
 tm_shape(san_fran) +
   tm_polygons(fill = 'PEOPCOLORPCT', 
               palette = 'viridis',
-              title = "% Population by People of Color", 
+              title = "% Population of People of Color", 
               position = tm_pos_out('right', 'top')) +
   tm_title("People of Color in San Francisco") + 
   tm_compass() +
@@ -50,7 +50,7 @@ tm_shape(san_fran) +
 ```
 ## Interpretation
  
-The Hunter's Point Naval Shipyard Superfund Site lies in the southeast corner of San Francisco.  Because of the city's relatively small geographic footprint, the entire city scores in at least the 40th national percentile, being closer to a superfund site than 40% of the U.S. population.  Census blocks close to the site are closer than at least 90% of the nation's population.  Mapping the demographic layout of people of color in San Francisco indicates that the shipyard dipsproptionately affects people of color.  At least 80% of the population closest to the Superfund Site are people of color.  To better understand the factors contributing to this inequality, further research can examine the influence of income inequality and housing costs, historical discriminatory practices such as red-lining, and comparisons of health outcomes across the city related to pollution from the site.
+The Hunter's Point Naval Shipyard Superfund Site lies in the southeast corner of San Francisco.  Because of the city's relatively small geographic footprint, the entire city scores in at least the 40th national percentile, being closer to a superfund site than 40% of the U.S. population.  Census blocks close to the site are closer than at least 90% of the nation's population.  Mapping the demographic layout of people of color in San Francisco indicates that the shipyard dipsproptionately affects people of color.  At least 80% of the population closest to the Superfund Site are people of color. To better understand the factors contributing to this inequality, further research can examine the influence of income inequality and housing costs, historical discriminatory practices such as red-lining, and comparisons of health outcomes across the city related to pollution from the site.
 
 
 ## References
