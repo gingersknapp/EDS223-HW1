@@ -22,11 +22,9 @@ ejscreen <- sf::st_read('../../../../courses/EDS223/ejscreen/EJSCREEN_2023_BG_St
 ```{r}
 # Filter to a San Francisco county
 san_fran <- ejscreen %>%
-  dplyr::filter(CNTY_NAME %in% c("San Francisco County")) |>  filter(ACSTOTPOP > 0) 
-   #Filter out census blocks without residents (bay, Farallon Islands, etc.)
-  
-
-
+  dplyr::filter(CNTY_NAME %in% c("San Francisco County")) |>  
+  #Filter out locations without residents (bay, Farallon Islands, etc.)
+  filter(ACSTOTPOP > 0) 
 ```
 
 ### Map the Data
@@ -35,9 +33,7 @@ tm_shape(san_fran) +
   tm_polygons(fill = 'P_PNPL', 
               title = "National Percentile Score",
               palette = 'viridis') +
-  tm_layout(main.title = "Proximity to Superfund Site",
-            fontface = "plain",
-            fontfamily = "sans") + 
+  tm_title("Proximity to Superfund Site") + 
   tm_compass(position = c('right', 'bottom')) +
   tm_scalebar(position = c('right', 'top'))
 
@@ -47,9 +43,7 @@ tm_shape(san_fran) +
               palette = 'viridis',
               title = "% Population by People of Color", 
               position = tm_pos_out('right', 'top')) +
-  tm_layout(main.title = "People of Color in San Francisco",
-            fontface = "plain",
-            fontfamily = "sans") + 
+  tm_title("People of Color in San Francisco") + 
   tm_compass() +
   tm_scalebar(position = c('right','top'))
 
