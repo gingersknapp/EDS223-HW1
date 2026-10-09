@@ -5,19 +5,18 @@ This project maps proximity to a Superfund site and the percent population of pe
 
 ## Repository Structure
 
-`EDS223-HW1`
-`│   README.md`
-`│   ej_screen.qmd                                # Analysis code document`
-`|   ej_screen.pdf                                # Exportable Analysis PDF`
-`└───   Rmd`
-`|       └─── files for rendering ej_screen.pdf`
-`└───  .quarto`
-`|       └─── files for viewing ej_screen.pdf`
-`|   LICENSE                                      # Use license`
+EDS223-HW1
+│    README.md
+│    ej_screen.qmd                                # Analysis code document
+|    ej_screen.pdf                                # Exportable Analysis PDF
+└─── .quarto/tyst/package/preview
+|       └─── files for viewing ej_screen.pdf
+|    LICENSE                                      # Use license
+└─── .gitignore                                     
 
 
 ## Data access
-Data was initally accessed from the U.S. Environmental Agency's EJScreen (Environmental Justicice Screening and Mapping Tool).  The EPA does not currently support the tool, but an unofficial version can be found [here](https://pedp-ejscreen.azurewebsites.net/)
+Data was initally accessed from the U.S. Environmental Agency's EJScreen (Environmental Justice Screening and Mapping Tool).  The EPA does not currently support the tool, but an unofficial version can be found [here](https://pedp-ejscreen.azurewebsites.net/)
 
 ## Authors
  - Olivia Knapp
