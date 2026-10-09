@@ -1,42 +1,67 @@
+# Environmental Justice in San Francisco
+Olivia Knapp, 10/10/26
+
+## Hunter's Point Naval Shipyard Superfund Site
+
+In southeast San Francisco lies Hunter's Point Naval Shipyard.  Between 1946 to 1969, the naval yard housed the Naval Radiological Defense Laboratory (NRDL).  The site leached fuel, pesticides, heavy meatals, and radioactive particles into nearby soil, ground water, and surface water. Though the site was added to the National Priorities List in 1989, historical and current inequalities may influence which communities are most affected by the environmental impacts of the site. 
+
+## Mapping proximity to the site and demographic factors
+
+### Load packages and source data
+
 ```{r}
 library(tidyverse)
 library(sf)
-library(here)
 library(tmap)
-
 ```
 
 ```{r}
-# read in geodatabase of EJScreen data at the Census Block Group level
+# Read in geodatabase of EJScreen data at the Census Block Group level
 ejscreen <- sf::st_read('../../../../courses/EDS223/ejscreen/EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb') 
 ```
 ```{r}
-# filter to a state you are interested in
-california <- ejscreen %>%
-  dplyr::filter(ST_ABBREV == "CA") 
-
+# Filter to a San Francisco county
 san_fran <- ejscreen %>%
-  dplyr::filter(CNTY_NAME %in% c("San Francisco County")) |> filter(
-    LOWINCOME > 0
-  )
+  dplyr::filter(CNTY_NAME %in% c("San Francisco County")) |>  filter(ACSTOTPOP > 0) 
+   #Filter out census blocks without residents (bay, Farallon Islands, etc.)
+  
 
 
 ```
 
-
-
-
-
-
-
-
-WE FOUND SOMETHING!
-
+### Map the Data
 ```{r}
 tm_shape(san_fran) +
-  tm_polygons(fill = 'P_PNPL')
+  tm_polygons(fill = 'P_PNPL', 
+              title = "National Percentile Score",
+              palette = 'viridis') +
+  tm_layout(main.title = "Proximity to Superfund Site",
+            fontface = "plain",
+            fontfamily = "sans") + 
+  tm_compass(position = c('right', 'bottom')) +
+  tm_scalebar(position = c('right', 'top'))
+
 
 tm_shape(san_fran) +
-  tm_polygons(fill = 'PEOPCOLORPCT')
-```
+  tm_polygons(fill = 'PEOPCOLORPCT', 
+              palette = 'viridis',
+              title = "% Population by People of Color", 
+              position = tm_pos_out('right', 'top')) +
+  tm_layout(main.title = "People of Color in San Francisco",
+            fontface = "plain",
+            fontfamily = "sans") + 
+  tm_compass() +
+  tm_scalebar(position = c('right','top'))
 
+```
+## Interpretation
+ 
+The Hunter's Point Naval Shipyard Superfund Site lies in the southeast corner of San Francisco.  Because of the city's relatively small geographic footprint, the entire city scores in at least the 40th national percentile, being closer to a superfund site than 40% of the U.S. population.  Census blocks close to the site are closer than at least 90% of the nation's population.  Mapping the demographic layout of people of color in San Francisco indicates that the shipyard dipsproptionately affects people of color.  At least 80% of the population closest to the Superfund Site are people of color.  To better understand the factors contributing to this inequality, further research can examine the influence of income inequality and housing costs, historical discriminatory practices such as red-lining, and comparisons of health outcomes across the city related to pollution from the site.
+
+
+## References
+- City and County of San Francisco. (n.d.). Hunters Point Naval Shipyard - learn more. SF.gov. https://www.sf.gov/hpns-cleanup-learn 
+
+- United States Environmental Protection Agency (EPA), 2023. EJScreen Technical Documentation.
+
+- United States Environmental Protection Agency (EPA). 2023 version. EJSCREEN. www.epa.gov/ejscreen
