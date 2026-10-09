@@ -10,7 +10,7 @@ This project maps proximity to a Superfund site and the percent population of pe
 |README.md                    | README for the repository           |
 |ej_screen.qmd                | Analysis code document              |
 |ej_screen.pdf                | Exportable analysis PDF             |
-|.quarto/tyst/package/preview | Files for viewing ej_screen.pdf     |
+|.quarto/typst/packages/preview | Files for viewing ej_screen.pdf     |
 |LICENSE                      | Use license                         |
 |.gitignore                   | Untracked files                     |                            
 
@@ -20,7 +20,7 @@ Data was initally accessed from the U.S. Environmental Agency's EJScreen (Enviro
 
 ## Authors
  - Olivia Knapp
- - Annie Adams (Instructor)
+ - [Annie Adams](https://github.com/annieradams) (Instructor)
 
 ## References
 - City and County of San Francisco. (n.d.). Hunters Point Naval Shipyard - learn more. SF.gov. https://www.sf.gov/hpns-cleanup-learn 
